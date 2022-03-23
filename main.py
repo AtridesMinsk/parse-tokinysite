@@ -13,23 +13,23 @@ shop_url = 'https://tokiny.by/menyu/'
 
 
 def get_menu_url():
-    start_url = shop_url
-    r = requests.get(start_url)
+    r = requests.get(shop_url)
     soup = BeautifulSoup(r.text, 'lxml')
-    action_url = []
+
+    menu_url = []
     for i in soup.find("div", class_="food-menu-items").findAll('a', href=True):
         link = str(i.get('href'))
         link = link.replace("menyu/", "")
         link = link.replace("/", "")
-        action_url.append(link)
+        menu_url.append(link)
 
-    return action_url
+    return menu_url
 
 
 def get_source_html(url):
     service = Service(executable_path="chromedriver/chromedriver.exe")
     driver = webdriver.Chrome(service=service)
-    driver.maximize_window()
+    driver.minimize_window()
 
     try:
         for i in url:
