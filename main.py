@@ -12,11 +12,12 @@ from selenium.webdriver.chrome.service import Service
 shop_url = 'https://tokiny.by/menyu/'
 
 
-def get_menu_url():
+def get_menu_urls():
     r = requests.get(shop_url)
     soup = BeautifulSoup(r.text, 'lxml')
 
     menu_url = []
+
     for i in soup.find("div", class_="food-menu-items").findAll('a', href=True):
         link = str(i.get('href'))
         link = link.replace("menyu/", "")
@@ -109,7 +110,7 @@ def collect_data(url):
 
 
 def main():
-    url = get_menu_url()
+    url = get_menu_urls()
     print('Получено:', len(url), 'ссылок на меню!')
     get_source_html(url)
     create_csv_file(url)
