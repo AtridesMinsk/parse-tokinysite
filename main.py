@@ -1,16 +1,10 @@
 # pip install beautifulsoup4 lxml requests wheel selenium
 
 import csv
-import json
-import os.path
-import re
 import requests
-import random
 import time
 
 from bs4 import BeautifulSoup
-from selenium import webdriver
-from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
@@ -117,7 +111,7 @@ def collect_data(url):
 def main():
     url = get_menu_url()
     print('Получено:', len(url), 'ссылок на меню!')
-    # get_source_html(url)
+    get_source_html(url)
     create_csv_file(url)
     collect_data(url)
 

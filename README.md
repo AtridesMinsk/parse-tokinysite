@@ -1,3 +1,5 @@
 This is a website parser.
 
-Geting menu data from site Tokiny.by
+Getting menu data from site Tokiny.by
+To work parser get chromedriver from https://chromedriver.chromium.org/downloads 
+ang copy to chromedriver folder!
