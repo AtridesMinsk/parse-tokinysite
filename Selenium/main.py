@@ -28,7 +28,7 @@ def get_menu_urls():
 
 
 def get_source_html(url):
-    service = Service(executable_path="chromedriver/chromedriver.exe")
+    service = Service(executable_path="Selenium/chromedriver/chromedriver.exe")
     driver = webdriver.Chrome(service=service)
     driver.minimize_window()
 
@@ -39,7 +39,7 @@ def get_source_html(url):
             time.sleep(3)
             print(f"[INFO] Загружаем страницу, {download_url}")
 
-            with open(f"html_data/page_{i}.html", "w", encoding="utf8") as file:
+            with open(f"Selenium/html_data/page_{i}.html", "w", encoding="utf8") as file:
                 file.write(driver.page_source)
 
     except Exception as ex:
@@ -51,7 +51,7 @@ def get_source_html(url):
 
 def create_csv_file(url):
     for i in url:
-        with open(f"csv_data/{i}.csv", "w", encoding="utf8", newline='') as file:
+        with open(f"Selenium/csv_data/{i}.csv", "w", encoding="utf8", newline='') as file:
             writer = csv.writer(file)
 
             writer.writerow(
@@ -80,7 +80,7 @@ def collect_data(url):
     data = []
 
     for page in url:
-        with open(f"html_data/page_{page}.html", "r", encoding="utf8") as file:
+        with open(f"Selenium/html_data/page_{page}.html", "r", encoding="utf8") as file:
             src = file.read()
 
         soup = BeautifulSoup(src, "lxml")
@@ -96,7 +96,7 @@ def collect_data(url):
                  }
             )
 
-            with open(f"csv_data/{page}.csv", "a", encoding="utf8", newline='') as file:
+            with open(f"Selenium/csv_data/{page}.csv", "a", encoding="utf8", newline='') as file:
                 writer = csv.writer(file)
 
                 writer.writerow(
