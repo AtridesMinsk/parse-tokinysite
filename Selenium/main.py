@@ -12,7 +12,7 @@ from selenium.webdriver.chrome.service import Service
 shop_url = 'https://tokiny.by/menyu/'
 
 
-def get_menu_urls():
+def get_menu_urls() -> list[str]:
     r = requests.get(shop_url)
     soup = BeautifulSoup(r.text, 'lxml')
 
@@ -27,7 +27,7 @@ def get_menu_urls():
     return menu_url
 
 
-def get_source_html(url):
+def get_source_html(url: list[str]):
     service = Service(executable_path="Selenium/chromedriver/chromedriver.exe")
     driver = webdriver.Chrome(service=service)
     driver.minimize_window()
@@ -49,7 +49,7 @@ def get_source_html(url):
         driver.quit()
 
 
-def create_csv_file(url):
+def create_csv_file(url: list[str]):
     for i in url:
         with open(f"Selenium/csv_data/{i}.csv", "w", encoding="utf8", newline='') as file:
             writer = csv.writer(file)
@@ -75,7 +75,7 @@ def get_product_price(item):
     return product_name
 
 
-def collect_data(url):
+def collect_data(url: list[str]):
 
     data = []
 
